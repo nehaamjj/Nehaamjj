@@ -1,0 +1,109 @@
+https://<!doctype html>
+
+<html lang="en">  
+<head>  
+  <meta charset="utf-8" />  
+  <meta name="viewport" content="width=device-width,initial-scale=1" />  
+  <title>Happy Birthday Surprise</title>  
+  <style>  
+    :root{--bg:#fff6fb;--accent:#ff6ea6;--muted:#6b7280}  
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}  
+    body{background:linear-gradient(180deg,var(--bg),#fff);display:flex;align-items:center;justify-content:center;padding:24px}  
+    .card{width:920px;max-width:96vw;background:#fff;border-radius:18px;box-shadow:0 18px 40px rgba(15,23,42,0.12);overflow:hidden;display:grid;grid-template-columns:1fr 420px}  
+    .left{padding:40px}  
+    h1{margin:0;color:#0f172a;font-size:34px}  
+    p{color:var(--muted);line-height:1.5}  
+    .big-btn{display:inline-flex;align-items:center;gap:12px;padding:16px 22px;background:linear-gradient(90deg,var(--accent),#ff9acb);color:white;border:none;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 8px 24px rgba(255,110,166,0.28)}  
+    .right{background:linear-gradient(180deg,#fff6fb,#fff0f7);display:flex;align-items:center;justify-content:center;padding:28px}  
+    .preview{width:360px;height:360px;border-radius:12px;background:radial-gradient(circle at 20% 20%,#fff,#ffeaf3);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;position:relative}  
+    .heart{font-size:42px}  
+    .message{display:none;white-space:pre-wrap;text-align:left;padding:18px;color:#111827;font-size:15px;margin-top:8px;border-radius:8px}  
+    .footer{font-size:13px;color:var(--muted);margin-top:12px}  
+    .small{font-size:13px;color:var(--muted)}  
+    /* confetti canvas covers whole page when playing */  
+    #confetti-canvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:999}  
+  </style>  
+</head>  
+<body>  
+  <canvas id="confetti-canvas"></canvas>  
+  <div class="card" role="main">  
+    <div class="left">  
+      <h1>Happy Birthday my ❤️</h1>  
+      <p class="small">Tap the big pink button on the right (or below on mobile). When they open it they'll get confetti, a sweet tune, and your message revealed with animation. Tip: for best experience open in Chrome or Safari. If audio doesn't play automatically, tap Play after opening.</p><div style="margin-top:18px">  
+    <button id="revealBtn" class="big-btn" aria-haspopup="dialog">Open your surprise ✨</button>  
+  </div>    <div class="footer">Made with ❤️ — edit the message inside the file where it says DEFAULT_MESSAGE before saving.</div>  
+</div>  <div class="right">  
+  <div class="preview" aria-hidden="false">  
+    <div class="heart">🎉💖</div>  
+    <div id="msg" class="message"></div>  
+    <div style="margin-top:12px" class="small">Press the button to reveal the full message.</div>  
+  </div>  
+</div>    </div>  <audio id="song" preload="auto">  
+    <!-- Default sound: a short cheerful chime. Replace src with your own file URL if you like -->  
+    <source src="https://cdn.jsdelivr.net/gh/anars/blank-audio/1-second-of-silence.mp3" type="audio/mpeg">  
+  </audio>  <script>  
+    // ----- EDITABLE MESSAGE -----  
+    const DEFAULT_MESSAGE = `Happy birthday my ❤️\n\nYou know what — you inspire me in ways you don’t even know…\nAlways a fan of your logic and thinking (but not unless and until you start being practical in sensitive things 😅😂😝).\n\nI just loveeeee youuuu yaaaaaaaar 💞\nI’m always so proud of you — the way you’re dedicated towards your work is something that inspires me the most, you know…\n\nYeah, I know I’ve argued with you the most, and sometimes in a harsh tone too 😅\nBut yaar, I am really sorry because  when I get super duper emotional, I don’t even realize what I’m saying.... 👉👈😅🥲🙃\nSo sorry for all those things\nI know I need to work on that thing and I will, that’s for sureee\n\nMay God always bless you with everything you truly deserve and keep you safe always 🧿\n\nUmmaaaaaaaaaaaaaaah aah !`;  
+    // ----------------------------  const revealBtn = document.getElementById('revealBtn');  
+const msgEl = document.getElementById('msg');  
+const audio = document.getElementById('song');  
+
+function typeMessage(text, el, cb){  
+  el.style.display = 'block';  
+  el.textContent = '';  
+  let i=0;  
+  const speed=18;  
+  const t = setInterval(()=>{  
+    el.textContent += text.charAt(i);  
+    i++;  
+    if(i>=text.length){ clearInterval(t); if(cb) cb() }  
+  }, speed);  
+}  
+
+function playConfetti(){  
+  // simple confetti implementation  
+  const canvas = document.getElementById('confetti-canvas');  
+  const ctx = canvas.getContext('2d');  
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;  
+  const confs = [];  
+  const colors = ['#FF6EA6','#FFD166','#9B5DE5','#00BBF9','#06D6A0','#FFB4A2'];  
+  for(let i=0;i<120;i++){  
+    confs.push({x:Math.random()*canvas.width,y:Math.random()*-canvas.height,vy:2+Math.random()*5,r:6+Math.random()*8,c:colors[Math.floor(Math.random()*colors.length)],rot:Math.random()*360,vr:Math.random()*6});  
+  }  
+  let frames=0;  
+  function draw(){  
+    ctx.clearRect(0,0,canvas.width,canvas.height);  
+    confs.forEach(p=>{  
+      p.y += p.vy; p.x += Math.sin(frames/10 + p.x/100)*2; p.rot += p.vr;  
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);  
+      ctx.fillStyle = p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);  
+      ctx.restore();  
+    });  
+    frames++;  
+    requestId = requestAnimationFrame(draw);  
+  }  
+  let requestId = requestAnimationFrame(draw);  
+  // stop after 6s  
+  setTimeout(()=>{ cancelAnimationFrame(requestId); ctx.clearRect(0,0,canvas.width,canvas.height); },6000);  
+}  
+
+revealBtn.addEventListener('click', async ()=>{  
+  // try to play audio - may be blocked without user gesture  
+  try{ audio.currentTime=0; await audio.play(); }catch(e){}  
+  playConfetti();  
+  typeMessage(DEFAULT_MESSAGE, msgEl);  
+  // small pulse animation on the button  
+  revealBtn.animate([{transform:'scale(1)'},{transform:'scale(1.04)'},{transform:'scale(1)'}],{duration:700});  
+  // change text so it can be shared again  
+  revealBtn.textContent = 'Revealed — Share the link 🎁';  
+});  
+
+// make mobile friendly: if user taps anywhere on preview, reveal too  
+document.querySelector('.preview').addEventListener('click', ()=>{ revealBtn.click(); });  
+
+// accessibility: allow Enter/Space to trigger  
+revealBtn.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); revealBtn.click(); }});
+
+</script></body>
+
+</html>
