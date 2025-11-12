@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎉</title>
+<style>
+  body {
+    font-family: 'Comic Sans MS', sans-serif;
+    background: #ffe6f0;
+    color: #333;
+    text-align: center;
+    padding: 50px;
+  }
+  #message p {
+    font-size: 1.5em;
+    margin: 15px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  #message.show p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  button {
+    padding: 15px 25px;
+    font-size: 1.2em;
+    background: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🎉 Happy Birthday! 🎉</h1>
+<button onclick="showMessage()">Open Your Surprise 💖</button>
+
+<div id="message">
+  <p>Happy Birthday my ❤️</p>
+  <p>You know what, you inspire me in ways you don’t even realize…</p>
+  <p>Always a fan of your logic and thinking (but not unless and until you start being practical in sensitive things 😅😂😝)</p>
+  <p>Anywaysss,</p>
+  <p>I just loveeeee youuuu yaaaaaaaar 💃🤪</p>
+  <p>I’m always so proud of you! The way you are dedicated towards your work, career etc truly inspires me and honestly, it really really does…</p>
+  <p>I know we have argued and sometimes, I talked in the most harshest tone 🙃</p>
+  <p>But yaar, I’m really sorry… when I get super duper emotional, I don’t even realize what I’m saying 👉👈😅🙃</p>
+  <p>So sorry for all those things. I know I need to work on that and I will, that’s for sureee 💗</p>
+  <p>May God always bless you with everything you truly deserve — success, achievements, good health, happiness, and always keep you safe 🧿</p>
+  <p>Ummaaaaaaaaaaah 💋.</p>
+  <p>Yours Neha 💃💅</p>
+</div>
+
+<audio id="birthdaySong" src="YOUR_AUDIO_FILE_URL_HERE.mp3"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+function showMessage() {
+  const message = document.getElementById('message');
+  message.classList.add('show');
+  document.getElementById('birthdaySong').play();
+
+  // Confetti effect
+  confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}
+</script>
+
+</body>
+</html>
