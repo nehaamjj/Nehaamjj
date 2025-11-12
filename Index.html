@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(180deg, #ffe6ef, #fff9fb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(255, 120, 160, 0.2);
+      max-width: 480px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #ff6fa8;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #444;
+      font-size: 15px;
+      line-height: 1.6;
+      text-align: left;
+      white-space: pre-wrap;
+      display: none;
+    }
+
+    button {
+      background: #ff85b8;
+      border: none;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 12px 22px;
+      cursor: pointer;
+      margin-top: 18px;
+      transition: 0.3s;
+      box-shadow: 0 6px 20px rgba(255, 120, 160, 0.25);
+    }
+
+    button:hover {
+      background: #ff6fa8;
+      transform: scale(1.04);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .hearts span {
+      position: absolute;
+      bottom: -10px;
+      background: #ffb6d9;
+      animation: rise 6s infinite ease-in;
+      opacity: 0.6;
+      border-radius: 50%;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+      100% { transform: translateY(-800px) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="hearts">
+      <span style="left:10%;width:12px;height:12px;animation-delay:0s;"></span>
+      <span style="left:25%;width:14px;height:14px;animation-delay:1s;"></span>
+      <span style="left:50%;width:10px;height:10px;animation-delay:2s;"></span>
+      <span style="left:70%;width:16px;height:16px;animation-delay:3s;"></span>
+      <span style="left:85%;width:11px;height:11px;animation-delay:4s;"></span>
+    </div>
+    <h1>Happy Birthday my ❤️</h1>
+    <button id="revealBtn">Open your message 💌</button>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const btn = document.getElementById('revealBtn');
+    const msg = document.getElementById('message');
+    const text = `You know what — you inspire me in ways you don’t even know…
+Always a fan of your logic and thinking (but not unless and until you start being practical in sensitive things 😅😂😝).
+
+I just loveeeee youuuu yaaaaaaaar 💞
+I’m always so proud of you — the way you’re dedicated towards your work is something that inspires me the most, you know…
+
+Yeah, I know I’ve argued with you the most, and sometimes in a harsh tone too 😅
+But yaar, I am really sorry because when I get super duper emotional, I don’t even realize what I’m saying.... 👉👈😅🥲🙃
+So sorry for all those things.
+I know I need to work on that thing and I will, that’s for sureee 💖
+
+May God always bless you with everything you truly deserve and keep you safe always 🧿
+
+Ummaaaaaaaaaaaaaaah aah ! 💋`;
+
+    btn.addEventListener('click', () => {
+      btn.style.display = 'none';
+      msg.style.display = 'block';
+      let i = 0;
+      const speed = 25;
+      const typing = setInterval(() => {
+        msg.textContent += text.charAt(i);
+        i++;
+        if (i === text.length) clearInterval(typing);
+      }, speed);
+    });
+  </script>
+</body>
+  </html>
