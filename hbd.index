@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Surprise</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #FFD3B6, #FFAAA5);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      color: #FF4D6D;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin: 15px 0;
+    }
+
+    .signature {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #FF4D6D;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy Birthday my ❤️</h1>
+    <p>You know what, you inspire me in ways you don’t even realize…</p>
+    <p>Always a fan of your logic and thinking (but not unless and until you start being practical in sensitive things 😅😂😝)</p>
+    <p>Anywaysss, I just loveeeee youuuu yaaaaaaaar 💃🤪</p>
+    <p>I’m always so proud of you! The way you are dedicated towards your work, career etc truly inspires me and honestly, it really really does…</p>
+    <p>I know we have argued and sometimes (most of the times during argument) I had talked in the harshest tone 🙃<br>
+    But yaar, I’m really sorry… when I get super duper emotional, I don’t even realize what I’m saying 👉👈😅🙃<br>
+    So sorry for all those things. I know I need to work on that and I will, that’s for sureee 💗</p>
+    <p>May God always bless you with everything you truly deserve: success, achievements, good health, happiness, and always keep you safe 🧿</p>
+    <p>Ummaaaaaaaaaaah 💋</p>
+    <p class="signature">Yours,<br>Neha 💃💅</p>
+  </div>
+</body>
+</html>
